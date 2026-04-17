@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Court Recovery Atlas</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="shell hero">
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span>COURT RECOVERY ATLAS</span>
+        </div>
+        <button class="ghost-button" data-jump="#database">Open injury database</button>
+      </nav>
+
+      <section class="hero-grid">
+        <div class="hero-copy card">
+          <p class="eyebrow">NBA and college basketball injury intelligence</p>
+          <h1>Real injury cases, real timelines, and medical context that can actually be useful.</h1>
+          <p class="lede">
+            This site tracks notable basketball injury cases across the NBA and college
+            game, then places them next to medically grounded recovery windows for
+            Achilles ruptures, ACL tears, meniscus injuries, ankle sprains, and knee
+            sprains. The goal is injury literacy, not rumor-chasing.
+          </p>
+
+          <div class="action-row">
+            <button class="primary-button" data-jump="#database">Browse cases</button>
+            <button class="secondary-button" data-jump="#guides">See recovery guides</button>
+          </div>
+
+          <div class="hero-pills">
+            <span>Verified source links</span>
+            <span>NBA + college coverage</span>
+            <span>Recovery-window references</span>
+            <span>Educational, not diagnostic</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel card">
+          <div class="panel-top">
+            <span>Live snapshot</span>
+            <span class="pill">Last checked April 16, 2026</span>
+          </div>
+
+          <div class="stat-grid">
+            <article>
+              <span class="stat-label">Tracked cases</span>
+              <strong id="trackedCases">0</strong>
+            </article>
+            <article>
+              <span class="stat-label">Injury families</span>
+              <strong id="injuryFamilies">0</strong>
+            </article>
+            <article>
+              <span class="stat-label">Leagues</span>
+              <strong>NBA + NCAA</strong>
+            </article>
+            <article>
+              <span class="stat-label">Purpose</span>
+              <strong>Education</strong>
+            </article>
+          </div>
+
+          <div class="featured-case">
+            <p class="eyebrow compact">Selected case</p>
+            <h2 id="featuredAthlete">Kevin Durant</h2>
+            <p id="featuredInjury" class="featured-sub">Ruptured right Achilles tendon</p>
+            <div class="timeline-line">
+              <div class="timeline-fill" id="featuredFill"></div>
+            </div>
+            <div class="featured-metrics">
+              <div>
+                <span class="stat-label">Injured</span>
+                <strong id="featuredInjuredDate">June 10, 2019</strong>
+              </div>
+              <div>
+                <span class="stat-label">Back in game action</span>
+                <strong id="featuredReturnDate">December 13, 2020</strong>
+              </div>
+              <div>
+                <span class="stat-label">Layoff</span>
+                <strong id="featuredLayoff">552 days</strong>
+              </div>
+            </div>
+            <p id="featuredSummary" class="panel-note">
+              Durant tore his Achilles during Game 5 of the 2019 Finals and first
+              returned to game action 552 days later in Brooklyn's 2020 preseason.
+            </p>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main class="shell">
+      <section class="section" id="database">
+        <div class="section-heading">
+          <p class="eyebrow">Injury database</p>
+          <h2>Filter by league, injury type, or player. Each case includes direct source links.</h2>
+        </div>
+
+        <div class="workspace">
+          <aside class="filter-panel card">
+            <label class="field">
+              Search athlete or injury
+              <input id="searchInput" type="text" placeholder="Try Kobe, ACL, Achilles..." />
+            </label>
+
+            <div class="filter-group">
+              <p class="filter-label">League</p>
+              <div class="chip-row" id="leagueFilters"></div>
+            </div>
+
+            <div class="filter-group">
+              <p class="filter-label">Injury family</p>
+              <div class="chip-row" id="injuryFilters"></div>
+            </div>
+
+            <div class="filter-group">
+              <p class="filter-label">Sort</p>
+              <div class="chip-row" id="sortFilters"></div>
+            </div>
+
+            <div class="callout">
+              <p class="filter-label">Why this matters</p>
+              <p>
+                "Out indefinitely" hides huge differences. A grade 1 sprain and an
+                Achilles rupture are both injuries, but their expected recovery paths
+                are not remotely comparable.
+              </p>
+            </div>
+          </aside>
+
+          <div class="results-column">
+            <div class="results-meta card">
+              <span id="resultsCount">0 cases</span>
+              <span id="resultsDescriptor">Sorted by longest documented layoff</span>
+            </div>
+            <div id="caseGrid" class="case-grid"></div>
+          </div>
+
+          <aside class="detail-panel card">
+            <p class="eyebrow compact">Case detail</p>
+            <h3 id="detailName">Select a case</h3>
+            <p id="detailMeta" class="detail-meta">
+              Pick any record from the database to inspect injury date, return date,
+              notes, and source links.
+            </p>
+
+            <div class="detail-stats" id="detailStats"></div>
+
+            <div class="detail-story">
+              <p class="filter-label">Timeline read</p>
+              <p id="detailStory">
+                The selected record will explain what happened, what the official source
+                confirmed, and how the layoff compared with a typical medical range.
+              </p>
+            </div>
+
+            <div class="detail-story">
+              <p class="filter-label">Source links</p>
+              <div id="detailSources" class="source-list"></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="guides">
+        <div class="section-heading">
+          <p class="eyebrow">Recovery guides</p>
+          <h2>Medical reference ranges for common basketball injuries.</h2>
+        </div>
+        <div id="guideGrid" class="guide-grid"></div>
+      </section>
+
+      <section class="section utility-section">
+        <div class="section-heading">
+          <p class="eyebrow">Real-world use</p>
+          <h2>Built to help fans, young athletes, parents, and coaches ask better questions.</h2>
+        </div>
+
+        <div class="utility-grid">
+          <article class="card utility-card">
+            <h3>For athletes and parents</h3>
+            <p>
+              Use the recovery guides to understand the difference between a few weeks,
+              several months, and a true year-long rehab. That context matters when
+              planning school, training, and expectations.
+            </p>
+          </article>
+          <article class="card utility-card">
+            <h3>For coaches</h3>
+            <p>
+              The database can help frame return-to-play conversations more responsibly.
+              Fast comeback stories exist, but they are not universal templates.
+            </p>
+          </article>
+          <article class="card utility-card">
+            <h3>For everyone</h3>
+            <p>
+              This is educational only. Any inability to bear weight, major swelling,
+              loss of motion, a visible deformity, or a pop with instability warrants
+              evaluation by a clinician.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
