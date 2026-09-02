@@ -2,7 +2,7 @@
 
 Court Recovery Atlas is a calm, practical check-in companion for athletes returning to sport. It helps users reflect on what changed, choose a cautious practice lane, and bring better questions to their clinician, athletic trainer, or coach.
 
-**Live site:** https://hoops-recovery-index.vercel.app/
+**Live site:** https://court-recovery-atlas-joel.vercel.app/
 
 ## What it includes
 
